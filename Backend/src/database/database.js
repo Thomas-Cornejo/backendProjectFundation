@@ -1,10 +1,8 @@
 import Sequelize from "sequelize";
+import dotenv from "dotenv";
 
+dotenv.config();
 
-const DB_NAME = "fundaciondb"
-const DB_USER = "root"
-const DB_PASSWORD = ""    
-export const sequelize = new Sequelize('fundaciondb', 'root', '',{
-  host: "localhost",
-  dialect: "mysql",
+export const sequelize = new Sequelize(process.env.MYSQL_URL, {
+  define: { timestamps: false },
 });
