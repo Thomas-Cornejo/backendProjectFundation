@@ -18,7 +18,7 @@ export const getAnimals = async (req, res) => {
 
 export const getAnimal = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id_animal } = req.params;
         const animal = await Animal.findOne({
             where: {
                 id,
@@ -32,25 +32,31 @@ export const getAnimal = async (req, res) => {
 };
 
 export const createAnimal = async (req, res) => {
-    const { name, age, race, gender, weigth } = req.body;
-    console.log(req.files);
-    let imagen = null;
-    let id_imagen = null;
-    if (req.files.imagen) {
-        const result = await uploadImage(req.files.imagen.tempFilePath);
-        fs.remove(req.files.imagen.tempFilePath);
-        imagen = result.secure_url;
-        id_imagen = result.public_id;
+    const { name, breed_id, date_entry, stimated_date_birth, sex, size, color, history, status_id } = req.body;
+    console.log(req.files); 
+    let image = null;
+    let image_id = null;
+
+    if (req.files && req.files.image) { // Verifica si hay un archivo
+        const result = await uploadImage(req.files.image.tempFilePath);
+        fs.remove(req.files.image.tempFilePath);
+        image = result.secure_url;
+        image_id = result.public_id;
     }
+
     try {
         const newAnimal = await Animal.create({
             name,
-            age,
-            race,
-            gender,
-            weigth,
-            imagen,
-            id_imagen,
+            breed_id,
+            date_entry,
+            stimated_date_birth,
+            sex,
+            size,
+            color,
+            history,
+            status_id,
+            image,
+            image_id,
         });
         res.json(newAnimal);
     } catch (error) {
@@ -58,41 +64,51 @@ export const createAnimal = async (req, res) => {
     }
 };
 
+
 export const updateAnimal = async (req, res) => {
-    let imagen = null;
-    let id_imagen = null;
+    let image = null;
+    let image_id = null;
     try {
-        const { id } = req.params;
-        const animal = await Animal.findByPk(id);
+        const { id_animal } = req.params;
+        const animal = await Animal.findByPk(id_animal);
         console.log(animal)
-        const { name, age, race, gender,  weigth } = req.body;
+        const { name, breed_id, date_entry, stimated_date_birth, sex, size, color, history, status_id } = req.body;
         if (!req.files) {
             //actualiza con la imagen actual
             await animal.update({
-                name,
-                age,
-                race,
-                gender,
+                color: colorame,
+                breed_id,
+                date_entry,
+                stimated_date_birth,
                 weigth,
+                sex,
+                size,
+                color,
+                history,
+                status_id,
             });
         } else {
             const result = await updateImage(
-            req.files.imagen.tempFilePath,
-            animal.dataValues.id_imagen
+            req.files.image.tempFilePath,
+            animal.dataValues.id_image
             );
-            fs.remove(req.files.imagen.tempFilePath);
-            imagen = result.secure_url;
-            id_imagen = result.public_id;
+            fs.remove(req.files.image.tempFilePath);
+            image = result.secure_url;
+            id_image = result.public_id;
             // Actualizar el usuario
             await animal.update({
                 name,
-                age,
-                race,
-                gender,
-                date,
+                breed_id,
+                date_entry,
+                stimated_date_birth,
                 weigth,
-                imagen,
-                id_imagen,
+                sex,
+                size,
+                color,
+                history,
+                status_id,
+                image,
+                image_id,
             });
         }
         res.json(animal);
@@ -103,18 +119,18 @@ export const updateAnimal = async (req, res) => {
 
 export const deleteAnimal = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id_animal } = req.params;
         const animal = await Animal.findOne({
             where: {
                 id,
             },
         });
-        if (animal.id_imagen) {
-            await deleteImage(animal.id_imagen);
+        if (animal.id_image) {
+            await deleteImage(animal.image_id);
         }
         await animal.destroy({
             where: {
-                id,
+                id_animal,
             },
         });
         res.sendStatus(204);

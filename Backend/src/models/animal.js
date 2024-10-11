@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize'
 import { sequelize } from '../database/database.js';
 
 export const Animal = sequelize.define('animals', {
-    id: {
+    id_animal: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -10,23 +10,35 @@ export const Animal = sequelize.define('animals', {
     name: {
         type: DataTypes.STRING,
     },
-    age: {
+    breed_id: {
         type: DataTypes.INTEGER,
     },
-    race: {
+    date_entry: {
+        type: DataTypes.DATE,
+    },
+    stimated_date_birth: {
+        type: DataTypes.DATE,
+    },
+    sex: {
         type: DataTypes.STRING,
     },
-    gender: {
+    size: {
         type: DataTypes.STRING,
     },
-    weight: {
+    color: {
+        type: DataTypes.STRING,
+    },
+    image: {
+        type: DataTypes.STRING,
+    },
+    image_id: {
+        type: DataTypes.STRING,
+    },
+    history: {
+        type: DataTypes.TEXT,
+    },
+    state_id: {
         type: DataTypes.INTEGER,
-    },
-    imagen: {
-        type: DataTypes.STRING,
-    },
-    id_imagen: {
-        type: DataTypes.STRING,
     }
 }); 
 export default Animal;
