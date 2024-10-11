@@ -16,10 +16,10 @@ export const getUsers = async (req, res) => {
 export const getUser = async (req, res) => {
   
   try {
-    const { id } = req.params;
+    const { id_user } = req.params;
     const user = await Usuario.findOne({
       where: {
-        id,
+        id_user,
       },
     });
     if (!user) return res.status(404).json({ message: "User not found" });
