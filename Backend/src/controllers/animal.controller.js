@@ -21,7 +21,7 @@ export const getAnimal = async (req, res) => {
         const { id_animal } = req.params;
         const animal = await Animal.findOne({
             where: {
-                id,
+                id_animal,
             },
         });   
         if (!animal) return res.status(404).json({ message: "Animal not found" });

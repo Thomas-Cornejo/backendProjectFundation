@@ -140,7 +140,7 @@ export const verificarAdmin = async (req, res) => {
 //-------------Usuario Login--------------------------
 export const usuarioLogin = async (req, res) => {
   try {
-    const { email, contraseña } = req.body;
+    const { email, password } = req.body;
 
     const usuario = await Usuario.findOne({
       where: { email },
@@ -154,7 +154,7 @@ export const usuarioLogin = async (req, res) => {
       });
     }
     //si la contraseña no coincide
-    if (contraseña !== usuario.contraseña) {
+    if (password !== usuario.password) {
       return res.status(403).json({
         error: true,
         msg: "Datos incorrectos",
@@ -174,7 +174,7 @@ export const usuarioLogin = async (req, res) => {
 // --------------Cambiar Contraseña------------------
 export const cambiarContraseña = async (req, res) => {
   try {
-    const { email, contraseña } = req.body;
+    const { email, password } = req.body;
 
     // Busca el usuario
     const usuario = await Usuario.findOne({
@@ -189,7 +189,7 @@ export const cambiarContraseña = async (req, res) => {
     }
 
     // Actualizar el usuario
-    usuario.contraseña = contraseña;
+    usuario.password = password;
     await usuario.save();
     res.status(200).json({
       error: false,
