@@ -39,6 +39,7 @@ export const Animal = sequelize.define('animals', {
     },
     state_id: {
         type: DataTypes.INTEGER,
+        defaultValue: 3
     }
 }); 
 export default Animal;

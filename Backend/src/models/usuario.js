@@ -15,7 +15,7 @@ export const Usuario = sequelize.define('users', {
         type: DataTypes.STRING,
     },
     phone: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     email: {
         type: DataTypes.STRING,
@@ -27,7 +27,7 @@ export const Usuario = sequelize.define('users', {
         type: DataTypes.STRING,
     },
     rol_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
     }
 },);
 

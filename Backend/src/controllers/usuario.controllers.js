@@ -30,14 +30,17 @@ export const getUser = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-  const { name, lastname, email, contraseña } = req.body;
+  const { name, lastname, phone,  email, address, password, rol_id } = req.body;
 
   try {
     const newUser = await Usuario.create({
       name,
       lastname,
+      phone,
       email,
-      contraseña,
+      address,
+      password,
+      rol_id
     });
     res.json(newUser);
   } catch (error) {
@@ -48,15 +51,16 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, lastname, email, cedula, telefono, contraseña } = req.body;
+    const { name, lastname, phone,  email, address, password, rol_id } = req.body;
 
     const user = await Usuario.findByPk(id);
     user.name = name;
     user.lastname = lastname;
+    user.phone = phone;
     user.email = email;
-    user.cedula = cedula;
-    user.telefono = telefono;
-    user.contraseña = contraseña;
+    user.address = address;
+    user.password = password;
+    user.rol_id = rol_id;
     await user.save();
 
     res.json(user);
