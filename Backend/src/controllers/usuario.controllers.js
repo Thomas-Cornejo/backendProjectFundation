@@ -144,13 +144,13 @@ export const verificarAdmin = async (req, res) => {
 //-------------Usuario Login--------------------------
 export const usuarioLogin = async (req, res) => {
   try {
+    console.log("Hola");
     const { email, password } = req.body;
-
     const usuario = await Usuario.findOne({
       where: { email },
     });
     console.log(usuario);
-    //si el usuario no existe
+    
     if (!usuario) {
       return res.status(404).json({
         error: true,

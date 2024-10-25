@@ -16,4 +16,4 @@ router.post("/login", usuarioLogin); //login
 
 router.put('/usuarios/:id_user', updateUser) //Actualizar usuario
 router.put("/cambiar", cambiarContraseña); // Cambia la contraseña
-export default router   
+export default router
