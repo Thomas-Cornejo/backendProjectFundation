@@ -144,13 +144,10 @@ export const verificarAdmin = async (req, res) => {
 //-------------Usuario Login--------------------------
 export const usuarioLogin = async (req, res) => {
   try {
-    console.log("Hola");
     const { email, password } = req.body;
     const usuario = await Usuario.findOne({
       where: { email },
     });
-    console.log(usuario);
-    
     if (!usuario) {
       return res.status(404).json({
         error: true,
@@ -166,7 +163,8 @@ export const usuarioLogin = async (req, res) => {
     }
     res.status(201).json({
       error: false,
-      usuario: usuario.id,
+      //Muestra el id del usuario
+      usuario: usuario.dataValues.id_user,
     });
   } catch (error) {
     res.status(500).json({
