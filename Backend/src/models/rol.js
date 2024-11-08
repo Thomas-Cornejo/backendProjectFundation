@@ -1,14 +1,14 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/database.js';
 
-export const rol = sequelize.define('rol', {
-    id: {
+export const Rol = sequelize.define('roles', {
+    id_rol: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    name: { 
+    name: {
         type: DataTypes.STRING,
     }
-    
-})
+});
+export default Rol;

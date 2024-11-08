@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize'
 import { sequelize } from '../database/database.js';
-
+import { Rol } from './rol.js';
 
 export const Usuario = sequelize.define('users', {
     id_user: {
@@ -26,9 +26,13 @@ export const Usuario = sequelize.define('users', {
     password: {
         type: DataTypes.STRING,
     },
-    rol_id: {
+    rol_id: {  // Clave foránea que hace referencia al ID del rol
         type: DataTypes.INTEGER,
+        references: {
+            model: Rol,      // Nombre del modelo relacionado
+            key: 'id_rol'        // Clave primaria en la tabla `Rol`
+        }
     }
 },);
-
+Usuario.belongsTo(Rol, { foreignKey: 'rol_id', as: 'Rol' });
 export default Usuario;

@@ -88,10 +88,20 @@ export const filtrarUsuarios = async (req, res) => {
   try {
     const { rol } = req.params;
     console.log(rol);
-      const usuarios = await Usuario.findAll({
-        where: { rol_id: rol },
-      });
-      res.json(usuarios);
+    
+    const usuarios = await Usuario.findAll({
+      where: { rol_id: rol },
+      include: [{
+        model: Rol,
+        attributes: ['name']  // Obtiene solo el nombre del rol
+      }],
+    });
+    // Formatea la respuesta para incluir el nombre del rol
+    const usuariosConRol = usuarios.map(usuario => ({
+      ...usuario.toJSON(),
+      rol: usuario.Rol.nombre  // Añade el nombre del rol en lugar del ID
+    }));
+    res.json(usuariosConRol);
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -100,6 +110,7 @@ export const filtrarUsuarios = async (req, res) => {
     });
   }
 };
+
 
 //----------------VERIFICAR ADMIN--------------------
 export const verificarAdmin = async (req, res) => {
