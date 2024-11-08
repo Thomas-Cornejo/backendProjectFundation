@@ -88,24 +88,10 @@ export const filtrarUsuarios = async (req, res) => {
   try {
     const { rol } = req.params;
     console.log(rol);
-
-    // if (
-    //   rol === "Admin" ||
-    //   rol === "Veterinario" ||
-    //   rol === "Secretario" ||
-    //   rol === "Voluntario" ||
-    //   rol === "Padrino" ||
-    //   rol === "Adoptante"
-    // ) {
       const usuarios = await Usuario.findAll({
-        where: { rol: rol },
+        where: { rol_id: rol },
       });
       res.json(usuarios);
-    // } else {
-    //   res.status(400).json({
-    //     msg: "Rol no válido",
-    //   });
-    // }
   } catch (error) {
     console.log(error);
     res.status(500).json({
