@@ -1,5 +1,5 @@
 import { Usuario } from "../models/usuario.js";
-
+  
 
 export const getUsers = async (req, res) => {
   try {
