@@ -30,8 +30,7 @@ export const getUser = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-  const { name, lastname, phone,  email, address, password, rol_id } = req.body;
-
+  const { name, lastname, phone, email, address, password, rol_id } = req.body;
   try {
     const newUser = await Usuario.create({
       name,
