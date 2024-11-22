@@ -29,8 +29,8 @@ export const Usuario = sequelize.define('users', {
     rol_id: {  // Clave foránea que hace referencia al ID del rol
         type: DataTypes.INTEGER,
         references: {
-            model: Rol,      // Nombre del modelo relacionado
-            key: 'id_rol'        // Clave primaria en la tabla `Rol`
+            model: Rol,      
+            key: 'id_rol'       
         }
     }
 },);

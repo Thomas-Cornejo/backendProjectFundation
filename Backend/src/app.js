@@ -1,13 +1,16 @@
 import express from "express";
 import userRoutes from "./routes/usuario.routes.js";
 import animalRoutes from "./routes/animal.routes.js";
+import requestRoutes from "./routes/request.routes.js";
 import cors from "cors";
 import fileUpload from "express-fileupload";
 import bcrypt from "bcrypt";
 import { Usuario } from "./models/usuario.js";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv";
+
+
+
 
 const app = express();
 
@@ -144,5 +147,5 @@ app.get("/protected", (req, res) => {
 
 app.use(userRoutes);
 app.use("/animals", animalRoutes);
-
+app.use("/", requestRoutes);
 export default app;
