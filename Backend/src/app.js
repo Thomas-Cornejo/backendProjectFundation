@@ -8,6 +8,7 @@ import bcrypt from "bcrypt";
 import { Usuario } from "./models/usuario.js";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 
 
 
@@ -25,8 +26,8 @@ app.use(
 );
 
 app.use(express.json());
-app.use(express.json());
-app.use(express.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(
   fileUpload({
     useTempFiles: true,
