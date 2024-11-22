@@ -8,7 +8,6 @@ import bcrypt from "bcrypt";
 import { Usuario } from "./models/usuario.js";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
 
 
 
@@ -16,18 +15,17 @@ import bodyParser from "body-parser";
 const app = express();
 
 //middlewares
-const allowedOrigins = ["http://127.0.0.1:5501", "backendprojectfundation-production.up.railway.app"];
+const allowedOrigins = ["http://127.0.0.1:5501"];
 
 app.use(
   cors({
-    origin: "*",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.urlencoded());
 app.use(
   fileUpload({
     useTempFiles: true,
