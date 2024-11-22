@@ -30,5 +30,8 @@ export const Requests = sequelize.define('requests', {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
         allowNull: false,
+    },
+    state_id: {
+        type: DataTypes.INTEGER,
     }
 })
