@@ -19,7 +19,7 @@ const allowedOrigins = ["http://127.0.0.1:5501"];
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: "*",
     credentials: true,
   })
 );
