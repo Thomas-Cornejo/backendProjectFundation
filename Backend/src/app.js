@@ -16,11 +16,11 @@ import bodyParser from "body-parser";
 const app = express();
 
 //middlewares
-const allowedOrigins = ["http://127.0.0.1:5501"];
+const allowedOrigins = ["http://127.0.0.1:5501", "backendprojectfundation-production.up.railway.app"];
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: "*",
     credentials: true,
   })
 );
