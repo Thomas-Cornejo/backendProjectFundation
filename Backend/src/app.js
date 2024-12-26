@@ -9,9 +9,6 @@ import { Usuario } from "./models/usuario.js";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 
-
-
-
 const app = express();
 
 //middlewares
